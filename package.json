@@ -1,0 +1,28 @@
+{
+  "name": "vue-ready",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack-dev-server --open --hot --watch",
+    "start": "node front-prod.js"
+  },
+  "author": "teraaret",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.6",
+    "webpack-cli": "^3.3.3"
+  },
+  "devDependencies": {
+    "css-loader": "^2.1.1",
+    "file-loader": "^4.0.0",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
+    "vue-loader": "^14.2.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.33.0",
+    "webpack-dev-server": "^3.7.1"
+  }
+}
