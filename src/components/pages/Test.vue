@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-        <h1>Test page</h1>
+    <div class="page">
+        <h2 class="page__subheader">Test page content</h2>
     </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
 <style scoped>
 
 .container{
-    
+
 }
 
 </style>

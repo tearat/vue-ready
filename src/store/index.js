@@ -9,7 +9,7 @@ export default new Vuex.Store({
         color: "white"
     },
     getters: {
-        getAbout: state => state.about, // Анонимная функция вызывается по переменной
+        getAbout: state => state.about,
         getColor: state => state.color
     },
     actions: {

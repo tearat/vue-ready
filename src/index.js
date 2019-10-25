@@ -3,13 +3,14 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-import router from './router/default.js';
+import router from '~/router/default.js';
 
-import store from './store'
+import store from '~/store'
 
-import Root from './components/Root.vue';
+import Root from '~/components/Root.vue';
 
-require('./public/style/main.scss');
+require('~/public/style/main.scss');
+require('~/public/fonts/OpenSans-Light.ttf');
 
 new Vue({
     el: '#app',

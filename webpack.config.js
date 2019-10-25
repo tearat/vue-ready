@@ -10,8 +10,7 @@ module.exports = {
         filename: 'build.js'
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.scss$/,
                 use: [
                     'vue-style-loader',
@@ -42,12 +41,24 @@ module.exports = {
                 options: {
                     name: '[name].[ext]'
                 }
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'fonts/'
+                    }
+                }]
             }
         ]
     },
     resolve: {
         alias: {
-            'vue$': 'vue/dist/vue.esm.js'
+            'vue$': 'vue/dist/vue.esm.js',
+            // '~$': './'
+            '~': path.resolve(__dirname, './src/')
         },
         extensions: ['*', '.js', '.vue', '.json']
     },
@@ -55,7 +66,7 @@ module.exports = {
         historyApiFallback: true,
         noInfo: true,
         overlay: true,
-        port: 8080,
+        port: 8000,
         host: 'localhost'
     },
     performance: {

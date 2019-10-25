@@ -1,0 +1,47 @@
+.center {
+    text-align: center;
+}
+
+.container {
+    background-color: #eee;
+    width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+    &__header {
+        font-family: 'Opensans', sans-serif;
+        color: $accent;
+    }
+    &__hr {
+
+    }
+
+    &__links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        &__link {
+            padding: 5px 20px;
+            display: inline-block;
+            background-color: royalblue;
+            color: white;
+            &:hover {
+                filter: brightness(1.25);
+            }
+        }
+    }
+    &__router-view {
+
+    }
+    .button {
+        background-color: blue;
+    }
+}
+
+.page {
+    &__subheader {
+        font-family: 'Roboto', sans-serif;
+        color: $accent;
+    }
+    &__image {
+    }
+}

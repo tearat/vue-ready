@@ -1,15 +1,17 @@
 <template>
-    <div class="container">
-        <h1>Index page</h1>
-        <img :src="metal" alt="">
+    <div class="page">
+        <h2 class="page__subheader center">Index page content</h2>
+        <div class="center">
+            <img :src="metal" alt="" class="page__image">
+        </div>
     </div>
 </template>
 
 
 <script>
 
-import metal from '../../public/img/pic.jpg'
-    
+import metal from '~/public/img/pic.jpg'
+
 export default {
     data () {
         return {
@@ -24,7 +26,7 @@ export default {
 <style scoped>
 
 .container{
-    
+
 }
 
 </style>
