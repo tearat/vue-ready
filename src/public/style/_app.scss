@@ -7,12 +7,13 @@
     width: 960px;
     margin: 0 auto;
     padding: 20px;
-    &__header {
+    h1 {
         font-family: 'Opensans', sans-serif;
         color: $accent;
     }
-    &__hr {
-
+    hr {
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     &__links {
@@ -28,9 +29,6 @@
                 filter: brightness(1.25);
             }
         }
-    }
-    &__router-view {
-
     }
     .button {
         background-color: blue;

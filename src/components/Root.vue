@@ -8,12 +8,13 @@
         <ul class="container__links">
             <router-link to="/" class="container__links__link">Index</router-link>
             <router-link to="/test" class="container__links__link">Test</router-link>
+            <router-link to="/vuetify" class="container__links__link">Vuetify</router-link>
         </ul>
 
         <hr class="container__hr">
 
         <p>Router view:</p>
-        <router-view class="container__router-view"></router-view>
+        <router-view v-on:hello="hello"></router-view>
     </div>
 </template>
 
@@ -24,7 +25,12 @@ export default {
     data () {
         return {
         }
-    }
+    },
+    methods: {
+        hello() {
+            alert("Hello vue!")
+        }
+    },
 }
 
 </script>

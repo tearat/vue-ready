@@ -10,7 +10,8 @@ module.exports = {
         filename: 'build.js'
     },
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.scss$/,
                 use: [
                     'vue-style-loader',
