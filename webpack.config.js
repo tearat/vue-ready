@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var VueLoaderPlugin = require('vue-loader/lib/plugin') // for vue-loader v.15
 
 module.exports = {
     entry: './src/index.js',
@@ -9,15 +10,14 @@ module.exports = {
         publicPath: '/dist/',
         filename: 'build.js'
     },
+    plugins: [
+        new VueLoaderPlugin()
+    ],
     module: {
         rules: [
             {
                 test: /\.scss$/,
-                use: [
-                    'vue-style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ]
+                use: [ 'vue-style-loader', 'css-loader', 'sass-loader' ]
             },
             {
                 test: /\.css$/,
@@ -25,11 +25,15 @@ module.exports = {
             },
             {
                 test: /\.vue$/,
-                loader: 'vue-loader',
-                options: {
-                    loaders: {}
-                    // other vue-loader options go here
-                }
+                use: [ 'vue-loader' ],
+            },
+            {
+                test: /\.pug$/,
+                use: [ 'pug-plain-loader' ],
+            },
+            {
+                test: /\.coffee$/,
+                use: [ 'coffee-loader' ],
             },
             //            {
             //                test: /\.js$/,
