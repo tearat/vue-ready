@@ -20,6 +20,24 @@ module.exports = {
                 use: [ 'vue-style-loader', 'css-loader', 'sass-loader' ]
             },
             {
+                test: /\.sass$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            // indentedSyntax: true,
+
+                            // sass-loader >= 8
+                            sassOptions: {
+                                indentedSyntax: true
+                            }
+                        }
+                    }
+                ]
+            },
+            {
                 test: /\.css$/,
                 use: ['vue-style-loader', 'css-loader'],
             },
@@ -71,7 +89,7 @@ module.exports = {
         historyApiFallback: true,
         noInfo: true,
         overlay: true,
-        port: 8000,
+        port: 8080,
         host: 'localhost'
     },
     performance: {

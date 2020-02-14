@@ -3,7 +3,7 @@
         h2 Langs demonstration
         p HTML compiled by Pug
         p JS compiled by Coffeescript
-        p CSS compiled by SCSS
+        p CSS compiled by SASS
         hr
         p mergedText: {{ mergedText }}
 </template>
@@ -19,10 +19,10 @@
                 return this.lorem + " " + this.ipsum
 </script>
 
-<style lang="scss" scoped>
-    .pug {
-        h2 {
-            color: crimson;
-        }
-    }
+<style lang="sass" scoped>
+
+    .pug
+        h2
+            color: crimson
+
 </style>
