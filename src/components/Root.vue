@@ -8,7 +8,6 @@
         <ul class="container__links">
             <router-link to="/" class="container__links__link">Index</router-link>
             <router-link to="/test" class="container__links__link">Test</router-link>
-            <router-link to="/vuetify" class="container__links__link">Vuetify</router-link>
             <router-link to="/someshit" class="container__links__link">Someshit</router-link>
         </ul>
 
