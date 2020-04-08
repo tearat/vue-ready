@@ -1,6 +1,8 @@
 var path = require('path')
 var webpack = require('webpack')
 var VueLoaderPlugin = require('vue-loader/lib/plugin') // for vue-loader v.15
+var config = require('./config')
+
 
 module.exports = {
     entry: './src/index.js',
@@ -89,8 +91,8 @@ module.exports = {
         historyApiFallback: true,
         noInfo: true,
         overlay: true,
-        port: 8080,
-        host: 'localhost'
+        port: config.frontend.port,
+        host: config.frontend.host,
     },
     performance: {
         hints: false
