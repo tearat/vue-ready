@@ -6,8 +6,9 @@
         <!-- <p>books: {{ books }}</p> -->
         <div v-if="books" v-for="book in books">
             <h3><router-link :to="{ name: 'book', params: {id: book.id} }">{{ book.title }}</router-link></h3>
-            <p>isbn: {{ book.isbn }}</p>
-            <p>author: {{ book.author }}</p>
+            <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <!-- <p>image: {{ book.image }}</p> -->
             <hr>
         </div>
     </div>
@@ -47,10 +48,17 @@ export default {
 </script>
 
 
-<style scoped>
+<style scoped lang="sass">
 
-.container{
-
-}
+.page
+    h3
+        font-size: 24px
+        background: #ddd
+        padding: 5px
+        a
+            display: block
+            text-decoration: none
+    p
+        padding-left: 5px
 
 </style>

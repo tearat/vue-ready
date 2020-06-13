@@ -4,17 +4,27 @@
     <!-- book: {{ book }} -->
     <hr>
     <div v-if="book">
-        <div class="form" @keyup.enter="sendForm">
-            <p>Title:</p>
-            <input type="text" v-model="book.title" class="header">
-            <p>ISBN:</p>
-            <input type="text" v-model="book.isbn">
-            <p>Author:</p>
-            <input type="text" v-model="book.author">
+        <form class="form" @submit.prevent="sendForm($event)">
+            <div class="form-block">
+                <label>Title:</label>
+                <input type="text" v-model="book.title" class="header" name="title">
+            </div>
+            <div class="form-block">
+                <label>ISBN:</label>
+                <input type="text" v-model="book.isbn" name="isbn">
+            </div>
+            <div class="form-block">
+                <label>Author:</label>
+                <input type="text" v-model="book.author" name="author">
+            </div>
+            <div class="form-block">
+                <label>File:</label>
+                <input type="file" name="file" ref="file" id="file" accept=".jpg,.jpeg,.png">
+            </div>
             <p v-for="error in errors" class="error-text">{{ error }}</p>
             <hr>
-            <button @click="sendForm">Create</button>
-        </div>
+            <button type="submit">Create</button>
+        </form>
         <hr>
     </div>
     <hr>
@@ -25,7 +35,6 @@
 <script>
 import axiator from '~/service/axiator'
 import axios from 'axios'
-import $ from 'jquery'
 
 export default {
     data() {
@@ -40,26 +49,39 @@ export default {
     },
     methods: {
         validate() {
-            this.errors = []
-            if( !this.book.title.trim() || !this.book.isbn.trim() || !this.book.author.trim() ) this.errors.push("Заполнены не все данные")
-            if( parseInt(Number(this.book.isbn)) != this.book.isbn ) this.errors.push("ISBN должен быть числом")
-            if( this.errors.length > 0 ) return false
-            return true
+            this.errors.length = 0
+            let fields = Object.values(this.book)
+            if (fields.filter(field => field.trim()).length < fields.length) this.errors.push("Заполнены не все данные")
+            if (parseInt(Number(this.book.isbn)) != this.book.isbn) this.errors.push("ISBN должен быть числом")
+            return (this.errors.length > 0) ? false : true
         },
-        sendForm() {
+        sendForm(event) {
             if( !this.validate() ) return false
+            event.preventDefault()
+            var formData = new FormData();
+            var imagefile = this.$refs.file
+            formData.append("image", imagefile.files[0]);
+            formData.append("title", this.book.title);
+            formData.append("isbn", this.book.isbn);
+            formData.append("author", this.book.author);
+
             var that = this;
             axiator({
                 method: 'post',
                 url: `/books`,
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'multipart/form-data',
                 },
-                data: that.book
+                data: formData
             })
             .then(function(response) {
                 // console.log(response.data);
-                that.$router.push({ name: 'book', params: { id: response.data.insertId } })
+                that.$router.push({
+                    name: 'book',
+                    params: {
+                        id: response.data.insertId
+                    }
+                })
             })
             .catch(function(error) {
                 console.log(error);
@@ -70,38 +92,26 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
-* {
-    font-family: Arial;
-}
+<style lang="sass" scoped>
 
-.show {
-    h3,
-    p {
-        margin: 0;
-        padding: 5px;
-        font-weight: 300;
-    }
-    h3 {
-        font-size: 20px;
-    }
-}
+.form
+    .form-block
+        label
+            width: 120px
+            display: inline-block
+            text-align: right
+            padding-right: 5px
+        input
+            width: 300px
+            padding: 5px
+            border: none
+            background: #ddd
+            font-size: 16px
+        input.header
+            font-size: 20px
+    .error-text
+        padding: 5px
+        background: firebrick
+        color: white
 
-.form {
-    input {
-        padding: 5px;
-        border: none;
-        background: #ddd;
-        display: block;
-        font-size: 16px;
-    }
-    input.header {
-        font-size: 20px;
-    }
-    .error-text {
-        padding: 5px;
-        background: firebrick;
-        color: white;
-    }
-}
 </style>
